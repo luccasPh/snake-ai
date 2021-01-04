@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+pyqt5 = "*"
+numpy = "*"
+scipy = "*"
+matplotlib = "*"
+black = "*"
+pyopengl = "*"
+pyopengl-accelerate = "*"
+sklearn = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+game = "python main.py"
+graph = "python src/graph.py"
