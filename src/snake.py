@@ -31,6 +31,7 @@ class Snake:
         self.south_east_view = []
         self.south_west_view = []
         self.north_west_view = []
+
         self.visualization()
 
     def place_food(self):

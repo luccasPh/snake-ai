@@ -1,6 +1,7 @@
-import time
 from PyQt5 import QtGui, QtCore, QtWidgets
 from .population import Population
+
+from src.snake import Snake
 
 
 class Window(QtWidgets.QWidget):
@@ -20,7 +21,7 @@ class Window(QtWidgets.QWidget):
         self.start()
 
     def start(self):
-        self.timer.start(0.1, self)
+        self.timer.start(5, self)
         self.update()
 
     def new_game(self):
@@ -43,19 +44,20 @@ class Window(QtWidgets.QWidget):
             self.next_snake += 1
         else:
             snake.place_food()
-            self.draw_snake(snake, qp)
             self.draw_food(snake.food[1], qp)
             snake.brain(self.population.net)
+            self.draw_snake(snake, qp)
             snake.move()
 
         self.draw_text(event, qp)
         qp.end()
 
     def draw_food(self, food, qp):
+        qp.setPen(QtCore.Qt.NoPen)
         qp.setBrush(QtGui.QColor(255, 128, 0, 255))
         qp.drawRect(food[0], food[1], 10, 10)
 
-    def draw_snake(self, snake, qp):
+    def draw_snake(self, snake: Snake, qp: QtGui.QPainter):
         qp.setPen(QtCore.Qt.NoPen)
         qp.setBrush(QtGui.QColor(230, 0, 0, 230))
         for body in snake.body:
